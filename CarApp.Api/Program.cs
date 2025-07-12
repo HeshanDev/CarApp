@@ -1,3 +1,5 @@
+using CarApp.Api.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,6 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
+
+// Register MediatR and other application services
+builder.Services.AddApplicationServices();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
