@@ -53,7 +53,8 @@ builder.Services.AddApplicationServices(builder.Configuration); // MediatR etc.
 
 // Register persistence layer with SQLite connection string from appsettings.json
 builder.Services.AddPersistenceServices(builder.Configuration.GetConnectionString("DefaultConnection"));
-builder.Services.AddInfrastructureServices(builder.Configuration.GetConnectionString("RedisConnection"));
+//builder.Services.AddInfrastructureServices(builder.Configuration.GetConnectionString("RedisConnection"));
+builder.Services.AddInfrastructureServices(builder.Configuration["Redis:Configuration"]);
 
 
 var app = builder.Build();
