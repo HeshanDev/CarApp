@@ -1,0 +1,13 @@
+services:
+  carapi:
+    build:
+      context: .
+      dockerfile: CarApp.Api/Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - redis
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - REDIS__HOST=redis
+      - REDIS__PORT=6379
