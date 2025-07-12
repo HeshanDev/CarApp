@@ -19,5 +19,7 @@ public sealed class CarId
 
     public static CarId From(Guid value) => new(value);
 
+    public static CarId FromGuid(Guid id) => new CarId(id);
+
     // Optional: override equality, ToString(), etc.
 }

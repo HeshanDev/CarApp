@@ -1,29 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>5deb98b6-8f70-4fee-8d89-af09e0774dc9</UserSecretsId>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UserSecretsId>5deb98b6-8f70-4fee-8d89-af09e0774dc9</UserSecretsId>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<!-- Enable XML documentation file generation -->
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.6" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.7">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
-    <PackageReference Include="Scrutor" Version="6.1.0" />
-    <PackageReference Include="StackExchange.Redis" Version="2.8.41" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.3" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.6" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.7">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
+		<PackageReference Include="Scrutor" Version="6.1.0" />
+		<PackageReference Include="StackExchange.Redis" Version="2.8.41" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.3" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\CarApp.Application\CarApp.Application.csproj" />
-    <ProjectReference Include="..\CarApp.Infrastructure\CarApp.Infrastructure.csproj" />
-    <ProjectReference Include="..\CarApp.Persistence\CarApp.Persistence.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\CarApp.Application\CarApp.Application.csproj" />
+		<ProjectReference Include="..\CarApp.Infrastructure\CarApp.Infrastructure.csproj" />
+		<ProjectReference Include="..\CarApp.Persistence\CarApp.Persistence.csproj" />
+	</ItemGroup>
 
 </Project>

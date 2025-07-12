@@ -2,12 +2,14 @@
 
 using CarApp.Domain.Interfaces;
 using CarApp.Domain.Repositories;
+using CarApp.Infrastructure.Extensions;
 using CarApp.Infrastructure.Repositories;
 using CarApp.Infrastructure.Services;
 using CarApp.Persistence.Repositories;
 
 using MediatR;
 
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using StackExchange.Redis;
@@ -22,13 +24,16 @@ public static class ServiceCollectionExtensions
     /// <summary>
     /// Register application services like MediatR and others.
     /// </summary>
-    public static IServiceCollection AddApplicationServices(this IServiceCollection services)
+    public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
     {
         // Register MediatR from the Application assembly
         services.AddMediatR(cfg =>
         {
             cfg.RegisterServicesFromAssembly(Assembly.Load("CarApp.Application"));
         });
+
+        // Add Redis distributed cache
+        services.AddRedisCache(configuration);
 
         return services;
     }

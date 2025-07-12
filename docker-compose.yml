@@ -1,13 +1,20 @@
+version: '3.9'
+
 services:
-  carapi:
+  carapp-api:
     build:
       context: .
       dockerfile: CarApp.Api/Dockerfile
     ports:
       - "8080:8080"
-    depends_on:
-      - redis
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - REDIS__HOST=redis
-      - REDIS__PORT=6379
+      - ConnectionStrings__DefaultConnection=Data Source=carapp.db
+      - Redis__Configuration=redis:6379
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:7.0-alpine
+    ports:
+      - "6379:6379"

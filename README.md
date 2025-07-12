@@ -4,9 +4,9 @@ This project demonstrates a simple .NET 8 Web API using **Clean Architecture**, 
 
 ---
 
-## 🔧 Project Setup
+## 🔧 Initial project structure
 
-### Create the solution and projects
+### CLI commands use to create the solution and projects
 
 ```bash
 dotnet new sln -n CarApp
@@ -34,7 +34,7 @@ dotnet add CarApp.Infrastructure reference CarApp.Persistence
 dotnet add CarApp.Persistence reference CarApp.Domain
 ```
 
-
+## Folder structure
 ```bash
 CarApp/
 ├── CarApp.Api/           → Web API entry point
@@ -45,6 +45,7 @@ CarApp/
 └── CarApp.sln            → Solution file
 ```
 
+## Packages added
 add this to CarApp.Api
 ```bash
 dotnet add package Swashbuckle.AspNetCore
@@ -87,6 +88,8 @@ CarApp.Api project (depending on where you want to configure caching), install:
 ```bash
 dotnet add package StackExchange.Redis
 dotnet add package Scrutor
+dotnet add package Microsoft.Extensions.Caching.StackExchangeRedis
+
 ```
 
 ### Where to put Redis and Scrutor packages?
@@ -108,3 +111,36 @@ Since DI setup usually happens in the API project (or a dedicated Composition Ro
 
 **Best place:** `CarApp.Api` project  
 — where you compose all dependencies together and wire them.
+
+
+
+
+## To run and debug
+
+###  Start Redis using Docker
+Open terminal and run:
+
+```bash
+docker run -d --name redis-dev -p 6379:6379 redis:7.0-alpine
+```
+
+Optional: Check Redis Is Working
+
+```bash
+docker exec -it redis-dev redis-cli
+```
+
+```bash
+keys *
+```
+
+```bash
+get "your-cache-key"
+```
+
+
+To Stop Redis Container
+```bash
+docker stop redis-dev
+docker rm redis-dev
+```
