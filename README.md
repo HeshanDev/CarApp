@@ -144,3 +144,18 @@ To Stop Redis Container
 docker stop redis-dev
 docker rm redis-dev
 ```
+
+###  Error handling
+
+Add these NuGet packages in your API project:
+
+```bash
+dotnet add package Serilog.AspNetCore
+dotnet add package Serilog.Sinks.Console
+dotnet add package Serilog.Sinks.File
+dotnet add package Serilog.Enrichers.Environment
+dotnet add package Serilog.Enrichers.Thread
+dotnet add package Serilog.Enrichers.Process
+dotnet add package Serilog.Enrichers.HttpContext
+
+```

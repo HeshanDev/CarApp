@@ -27,8 +27,18 @@ FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "./CarApp.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
+VOLUME [ "/app/Logs" ]
+
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final
 WORKDIR /app
+
+# Create logs folder (optional)
+RUN mkdir Logs
+
 COPY --from=publish /app/publish .
+
+# Expose logs directory as volume (optional)
+VOLUME [ "/app/Logs" ]
+
 ENTRYPOINT ["dotnet", "CarApp.Api.dll"]

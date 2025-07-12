@@ -13,6 +13,9 @@ services:
       - Redis__Configuration=redis:6379
     depends_on:
       - redis
+    volumes:
+      # Bind mount host logs folder to container logs folder
+      - C:/CarApp/Logs:/app/Logs   # maps host logs to container logs folder
 
   redis:
     image: redis:7.0-alpine
