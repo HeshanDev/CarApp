@@ -94,7 +94,7 @@ dotnet add package Microsoft.Extensions.Caching.StackExchangeRedis
 
 ### Where to put Redis and Scrutor packages?
 
-### 1️⃣ StackExchange.Redis
+### StackExchange.Redis
 
 This is an infrastructure detail — a concrete technology to access Redis.
 
@@ -103,7 +103,7 @@ Because Infrastructure contains implementations for external systems (databases,
 
 ---
 
-### 2️⃣ Scrutor
+### Scrutor
 
 Scrutor is a DI helper library used during composition root setup (where you register services).
 
@@ -159,3 +159,70 @@ dotnet add package Serilog.Enrichers.Process
 dotnet add package Serilog.Enrichers.HttpContext
 
 ```
+
+
+# Running and Testing CarApp .NET + Redis Docker Setup
+
+## 1. Build Docker Images
+From the root folder (where `docker-compose.yml` is located), run:
+
+
+```bash
+docker-compose build
+```
+## 2. Run Containers (App + Redis)
+
+```bash
+docker-compose up
+```
+
+## 3. Run Containers in Detached Mode
+Run containers in the background:
+```bash
+docker-compose up -d
+```
+
+To follow logs after running in detached mode:
+```bash
+docker-compose logs -f
+```
+
+## 4. Check Running Containers
+```bash
+docker ps
+```
+
+## 5. Test Your API
+Open a browser or API client (like Postman) and go to:
+```bash
+http://localhost:8080/swagger
+```
+
+## 6. View Logs
+To view your API logs (when running in detached mode):
+```bash
+docker-compose logs -f carapp-api
+```
+To view Redis logs:
+```bash
+docker-compose logs -f redis
+```
+
+ ## 7. Stop Containers
+ Stop and remove all containers:
+```bash
+ docker-compose down
+```
+
+  ## 8. Inspect Redis Data
+```bash
+  docker exec -it <redis_container_id_or_name> redis-cli
+```
+Additional Redis commands:
+```bash
+keys *
+get <key>
+```
+
+
+
