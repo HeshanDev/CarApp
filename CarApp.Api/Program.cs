@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 
 using CarApp.Api.Extensions;
+using CarApp.Persistence.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,11 @@ builder.Services.AddSwaggerGen(options =>
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
+
 builder.Services.AddApplicationServices(); // MediatR etc.
+
+// Register persistence layer with SQLite connection string from appsettings.json
+builder.Services.AddPersistenceServices(builder.Configuration.GetConnectionString("DefaultConnection"));
 
 var app = builder.Build();
 

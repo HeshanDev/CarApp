@@ -44,3 +44,36 @@ CarApp/
 ├── CarApp.Persistence/   → EF Core + SQLite
 └── CarApp.sln            → Solution file
 ```
+
+add this to CarApp.Api
+```bash
+dotnet add package Swashbuckle.AspNetCore
+```
+
+Add EF Core NuGet Packages
+In CarApp.Persistence project, install:
+
+```bash
+dotnet add package Microsoft.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite
+dotnet add package Microsoft.EntityFrameworkCore.Design
+```
+
+Add the EF Core Design package to your startup project CarApp.Api
+
+```bash
+dotnet add package Microsoft.EntityFrameworkCore.Design
+```
+
+
+To Create EF Core migrations and update DB
+Install EF tools globally if not done:
+```bash
+dotnet tool install --global dotnet-ef
+```
+
+Create migrations (run in CarApp.Api folder):
+```bash
+dotnet ef migrations add InitialCreate --project ../CarApp.Persistence/CarApp.Persistence.csproj --startup-project .
+dotnet ef database update --project ../CarApp.Persistence/CarApp.Persistence.csproj --startup-project .
+```

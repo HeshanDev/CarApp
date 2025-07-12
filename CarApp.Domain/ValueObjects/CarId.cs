@@ -6,8 +6,18 @@
 /// 
 
 //record is ideal for value objects: immutable and value-based equality.
-public sealed record CarId(Guid Value)
+public sealed class CarId
 {
+    public Guid Value { get; }
+
+    private CarId(Guid value)
+    {
+        Value = value;
+    }
+
     public static CarId New() => new(Guid.NewGuid());
-    public override string ToString() => Value.ToString();
+
+    public static CarId From(Guid value) => new(value);
+
+    // Optional: override equality, ToString(), etc.
 }
