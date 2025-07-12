@@ -1,6 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <PackageReference Include="StackExchange.Redis" Version="2.8.41" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CarApp.Domain\CarApp.Domain.csproj" />
     <ProjectReference Include="..\CarApp.Persistence\CarApp.Persistence.csproj" />
   </ItemGroup>

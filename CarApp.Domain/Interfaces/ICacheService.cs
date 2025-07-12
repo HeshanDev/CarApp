@@ -1,4 +1,4 @@
-﻿namespace CarApp.Application.Interfaces;
+﻿namespace CarApp.Domain.Interfaces;
 
 /// <summary>
 /// Abstraction for distributed cache.

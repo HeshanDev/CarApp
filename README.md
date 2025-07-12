@@ -77,3 +77,34 @@ Create migrations (run in CarApp.Api folder):
 dotnet ef migrations add InitialCreate --project ../CarApp.Persistence/CarApp.Persistence.csproj --startup-project .
 dotnet ef database update --project ../CarApp.Persistence/CarApp.Persistence.csproj --startup-project .
 ```
+
+## Distributed Caching with Redis + Decorator Pattern
+
+Add Required NuGet Packages
+In your CarApp.Infrastructure or 
+CarApp.Api project (depending on where you want to configure caching), install:
+
+```bash
+dotnet add package StackExchange.Redis
+dotnet add package Scrutor
+```
+
+### Where to put Redis and Scrutor packages?
+
+### 1️⃣ StackExchange.Redis
+
+This is an infrastructure detail — a concrete technology to access Redis.
+
+**Best place:** `CarApp.Infrastructure` project  
+Because Infrastructure contains implementations for external systems (databases, caches, file systems, email, etc).
+
+---
+
+### 2️⃣ Scrutor
+
+Scrutor is a DI helper library used during composition root setup (where you register services).
+
+Since DI setup usually happens in the API project (or a dedicated Composition Root project),
+
+**Best place:** `CarApp.Api` project  
+— where you compose all dependencies together and wire them.
