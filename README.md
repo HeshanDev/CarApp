@@ -32,6 +32,9 @@ dotnet add CarApp.Application reference CarApp.Infrastructure
 dotnet add CarApp.Infrastructure reference CarApp.Domain
 dotnet add CarApp.Infrastructure reference CarApp.Persistence
 dotnet add CarApp.Persistence reference CarApp.Domain
+
+dotnet new xunit -n CarApp.Tests
+dotnet sln add CarApp.Tests/CarApp.Tests.csproj
 ```
 
 ## Folder structure
@@ -43,6 +46,7 @@ CarApp/
 ├── CarApp.Infrastructure/→ Redis caching, decorators, implementations
 ├── CarApp.Persistence/   → EF Core + SQLite
 └── CarApp.sln            → Solution file
+└── CarApp.Tests/         → Unit test project
 ```
 
 ## Packages added
