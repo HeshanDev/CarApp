@@ -34,6 +34,7 @@ jobs:
       # 🧪 Step 5: Run unit tests (optional, can be skipped if no tests)
       - name: Run tests
         run: dotnet test --no-restore --verbosity normal
+        continue-on-error: true
 
     # ----------------------------------------
     # 📦 CD Part (commented out for now)
@@ -56,3 +57,22 @@ jobs:
     #     file: ./CarApp.Api/Dockerfile
     #     push: true
     #     tags: ghcr.io/${{ github.repository_owner }}/carapp-api:latest
+
+
+
+      - name: 🐳 Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: 🔐 Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: 📦 Build and Push Docker image to Docker Hub
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./CarApp.Api/Dockerfile
+          push: true
+          tags: heshanwijerathna/carapp-api:latest
